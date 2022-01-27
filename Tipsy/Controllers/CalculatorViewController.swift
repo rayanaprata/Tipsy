@@ -16,9 +16,9 @@ class CalculatorViewController: UIViewController {
     @IBOutlet weak var twentyPctButton: UIButton!
     @IBOutlet weak var splitNumberLabel: UILabel!
 
+    var billTotal = 0.0
     var tipPercentage = 0.10
     var numberOfPeople = 2
-    var billTotal = 0.0
     var finalResult = "0.0"
 
     @IBAction func tipChanged(_ sender: UIButton) {
@@ -45,10 +45,10 @@ class CalculatorViewController: UIViewController {
         
         //Divide the percent expressed out of 100 into a decimal e.g. 10 becomes 0.1
         tipPercentage = buttonTitleAsANumber / 100
-        
     }
     
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
+        
         //Get the stepper value using sender.value, round it down to a whole number then set it as the text in
         //the splitNumberLabel
         splitNumberLabel.text = String(format: "%.0f", sender.value)
@@ -79,12 +79,11 @@ class CalculatorViewController: UIViewController {
         //In Main.storyboard there is a segue between CalculatorVC and ResultsVC with the identifier "goToResult".
         //This line triggers the segue to happen.
         self.performSegue(withIdentifier: "goToResult", sender: self)
-    
     }
     
     //This method gets triggered just before the segue starts.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+
         //If the currently triggered segue is the "goToResult" segue.
         if segue.identifier == "goToResult" {
             
